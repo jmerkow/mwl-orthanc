@@ -1,0 +1,23 @@
+{ 
+        "Name": "Som Orthanc", 
+        "Plugins": ["/usr/share/orthanc/plugins"], 
+        "DicomAet": "SOMORTHANC", 
+        "DicomModalities": { 
+                "bar": ["BAR", "bar", 104] 
+        }, 
+        "RemoteAccessAllowed": true, 
+
+        // "RegisteredUsers" : {
+        //                        "admin": "passw0rd",
+        //                        "orthanc": "orthanc"
+        //                     },
+
+        "AuthenticationEnabled" : false,
+        "PostgreSQL": { 
+                "EnableIndex": true, 
+                "EnableStorage": false, 
+                "Host": "orthanc-index", 
+                "Database": "postgres", 
+                "Username": "postgres" 
+        } 
+} 

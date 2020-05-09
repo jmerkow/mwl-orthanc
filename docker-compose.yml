@@ -1,0 +1,31 @@
+version: "2"
+services:
+  orthanc:
+    build: orthanc
+    depends_on:
+      - orthanc-index
+    ports:
+      - "4242:4242"
+      - "8042:8042"
+    volumes:
+      - "orthanc-storage:/var/lib/orthanc/db"
+      - ./dicom-incoming/:/data/incoming/:rw
+  orthanc-index:
+    image: postgres
+    volumes:
+      - orthanc-index:/var/lib/postgresql/data:rw
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+  mwl:
+    build: mwl
+    ports:
+      - "8999:5000"
+    volumes:
+      - ./mwl/app:/app/
+    restart: unless-stopped
+
+volumes:
+  orthanc-storage:
+  orthanc-index:
